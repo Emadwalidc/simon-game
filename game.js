@@ -48,6 +48,24 @@ $(document).keypress(function (){
     
 });
 
+const specifiedElement = document.getElementById('red')
+
+// I'm using "click" but it works with any event
+document.addEventListener('click', event => {
+  const isClickInside = specifiedElement.contains(event.target)
+
+  if (!isClickInside) {
+    // The click was OUTSIDE the specifiedElement, do something
+    if(!started){
+        nextSequence();
+        $("h1").text("level "+level);
+        started = true;
+    }
+
+  }
+})
+
+
 function checkAnswer(currentLevel) {
         if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
             console.log("success");
